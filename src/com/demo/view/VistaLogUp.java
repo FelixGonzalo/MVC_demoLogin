@@ -5,19 +5,24 @@
  */
 package com.demo.view;
 
+import com.demo.controller.ControllerLogin;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fekilo
  */
 public class VistaLogUp extends javax.swing.JFrame {
-
+    ControllerLogin cLogin;
     /**
      * Creates new form VistaLogUp
      */
     public VistaLogUp() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cLogin = new ControllerLogin();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,10 +45,11 @@ public class VistaLogUp extends javax.swing.JFrame {
         jtxtClave = new javax.swing.JTextField();
         jtxtApellidos = new javax.swing.JTextField();
         jtxtNombres = new javax.swing.JTextField();
-        jtxtTipo = new javax.swing.JTextField();
         jbtnRegistrar = new javax.swing.JButton();
+        jcbxTipo = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jpanLogUp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -69,6 +75,13 @@ public class VistaLogUp extends javax.swing.JFrame {
         });
 
         jbtnRegistrar.setText("Registrar");
+        jbtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRegistrarActionPerformed(evt);
+            }
+        });
+
+        jcbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "empleado", "invitado" }));
 
         javax.swing.GroupLayout jpanLogUpLayout = new javax.swing.GroupLayout(jpanLogUp);
         jpanLogUp.setLayout(jpanLogUpLayout);
@@ -92,7 +105,7 @@ public class VistaLogUp extends javax.swing.JFrame {
                             .addComponent(jtxtClave)
                             .addComponent(jtxtApellidos)
                             .addComponent(jtxtNombres)
-                            .addComponent(jtxtTipo)))
+                            .addComponent(jcbxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbtnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                 .addContainerGap())
@@ -125,7 +138,7 @@ public class VistaLogUp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jpanLogUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbTipos)
-                    .addComponent(jtxtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbtnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
@@ -154,6 +167,35 @@ public class VistaLogUp extends javax.swing.JFrame {
     private void jtxtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtNombresActionPerformed
+
+    private void jbtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistrarActionPerformed
+        // TODO add your handling code here:
+        String id, email, clave, apellidos, nombres, tipo;
+        long band;
+        id = jtxtId.getText();
+        email = jtxtEmail.getText();
+        clave = jtxtClave.getText();
+        apellidos = jtxtApellidos.getText();
+        nombres = jtxtNombres.getText();
+        tipo = Integer.toString(jcbxTipo.getSelectedIndex());
+        
+        band = this.cLogin.logUp(id, email, clave, apellidos, nombres, tipo);
+        
+        switch((int)band){
+            case 0:
+                JOptionPane.showMessageDialog(this, "Log Up Valida");
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(this, "Verifique su ID");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(this, "Verifique su Email");
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                break;
+        }
+    }//GEN-LAST:event_jbtnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +235,7 @@ public class VistaLogUp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jbTitulo;
     private javax.swing.JButton jbtnRegistrar;
+    private javax.swing.JComboBox<String> jcbxTipo;
     private javax.swing.JLabel jlbApellidos;
     private javax.swing.JLabel jlbClave;
     private javax.swing.JLabel jlbEmail;
@@ -205,6 +248,5 @@ public class VistaLogUp extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtEmail;
     private javax.swing.JTextField jtxtId;
     private javax.swing.JTextField jtxtNombres;
-    private javax.swing.JTextField jtxtTipo;
     // End of variables declaration//GEN-END:variables
 }

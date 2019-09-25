@@ -5,17 +5,22 @@
  */
 package com.demo.view;
 
+import com.demo.controller.ControllerLogin;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fekilo
  */
 public class VistaRecuperarClave extends javax.swing.JFrame {
-
+    ControllerLogin cLogin;
     /**
      * Creates new form VistaRecuperarClave
      */
     public VistaRecuperarClave() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cLogin = new ControllerLogin();
     }
 
     /**
@@ -35,7 +40,8 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
         jtxtNuevaClave = new javax.swing.JTextField();
         jbtnRecuperar = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jpanRecuperarClave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -47,6 +53,11 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
         jlbNuevaClave.setText("NUEVA CLAVE");
 
         jbtnRecuperar.setText("Recuperar");
+        jbtnRecuperar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRecuperarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpanRecuperarClaveLayout = new javax.swing.GroupLayout(jpanRecuperarClave);
         jpanRecuperarClave.setLayout(jpanRecuperarClaveLayout);
@@ -104,6 +115,29 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRecuperarActionPerformed
+                // TODO add your handling code here:
+        String usuario, clave;
+        usuario = this.jtxtUsuario.getText();
+        clave = this.jtxtNuevaClave.getText();
+        
+        long band;
+        
+        band = this.cLogin.RecuperarClave(usuario, clave);
+        
+        switch((int)band){
+            case 0:
+                JOptionPane.showMessageDialog(this, "Recuperación de clave Valida");
+            break;
+            case 1:
+                JOptionPane.showMessageDialog(this, "Verifique clave");
+            break;
+            case 2:
+                JOptionPane.showMessageDialog(this, "Usuario no registrado");
+            break;    
+        }
+    }//GEN-LAST:event_jbtnRecuperarActionPerformed
 
     /**
      * @param args the command line arguments

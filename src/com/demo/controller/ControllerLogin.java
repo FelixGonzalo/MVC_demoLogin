@@ -7,6 +7,7 @@ package com.demo.controller;
 
 import com.demo.model.ModeloUsuario;
 import com.demo.model.entity.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,15 +30,26 @@ public class ControllerLogin extends Controller {
     }
     
     
-    public long logUp(){
-        long status = 0;
-        
+    public long logUp(String id, String email, String clave, String apellidos, String nombres, String tipo){
+        long status = -1;
+        try {
+            Usuario user = new Usuario(Integer.parseInt(id), email, clave, apellidos, nombres, Integer.parseInt(tipo));
+            status = ModeloUsuario.logUp(user);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Verifique los datos");
+        }
         return status;
     }
     
-    public long RecuperarClave(){
+    public long RecuperarClave(String email, String clave){
         long status = 0;
-        
+        try {
+            Usuario user = new Usuario(email, clave);
+            status = ModeloUsuario.recuperarClave(user);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Verifique los datos");
+        }
+        ModeloUsuario.listarUsuario();
         return status;
     }
     

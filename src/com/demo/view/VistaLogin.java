@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.demo.view;
-
 import com.demo.controller.ControllerLogin;
 import javax.swing.JOptionPane;
 
@@ -13,15 +12,19 @@ import javax.swing.JOptionPane;
  * @author whiston
  */
 public class VistaLogin extends javax.swing.JFrame {
-
     ControllerLogin cLogin;
+    VistaLogUp vLogUp;
+    VistaRecuperarClave vRecuperarClave;
     
     /**
      * Creates new form VistaLogin
      */
     public VistaLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         cLogin = new ControllerLogin();
+        vLogUp = new VistaLogUp();
+        vRecuperarClave = new VistaRecuperarClave();
     }
 
     /**
@@ -44,7 +47,9 @@ public class VistaLogin extends javax.swing.JFrame {
         jlbTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        jpanDemoLogin.setBackground(new java.awt.Color(245, 248, 248));
         jpanDemoLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jBtnRecuperar.setText("Recuperar clave");
@@ -161,11 +166,11 @@ public class VistaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnLoginActionPerformed
 
     private void jBtnLogupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogupActionPerformed
-        // TODO add your handling code here:
+       vLogUp.setVisible(true);
     }//GEN-LAST:event_jBtnLogupActionPerformed
 
     private void jBtnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRecuperarActionPerformed
-        // TODO add your handling code here:
+        vRecuperarClave.setVisible(true);
     }//GEN-LAST:event_jBtnRecuperarActionPerformed
 
     /**
