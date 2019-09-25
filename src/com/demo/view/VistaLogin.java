@@ -33,22 +33,26 @@ public class VistaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        JtxtUsuario = new javax.swing.JTextField();
-        jTxtClave = new javax.swing.JTextField();
+        jpanDemoLogin = new javax.swing.JPanel();
+        jBtnRecuperar = new javax.swing.JButton();
         jBtnLogin = new javax.swing.JButton();
         jBtnLogup = new javax.swing.JButton();
-        jBtnRecuperar = new javax.swing.JButton();
+        jlbClave = new javax.swing.JLabel();
+        jTxtClave = new javax.swing.JTextField();
+        JtxtUsuario = new javax.swing.JTextField();
+        jlbUsuario = new javax.swing.JLabel();
+        jlbTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("DEMO LOGIN");
+        jpanDemoLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setText("USUARIO:");
-
-        jLabel3.setText("CLAVE:");
+        jBtnRecuperar.setText("Recuperar clave");
+        jBtnRecuperar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRecuperarActionPerformed(evt);
+            }
+        });
 
         jBtnLogin.setText("Log In");
         jBtnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -64,59 +68,73 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        jBtnRecuperar.setText("Recuperar clave");
-        jBtnRecuperar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnRecuperarActionPerformed(evt);
-            }
-        });
+        jlbClave.setText("CLAVE:");
+
+        jlbUsuario.setText("USUARIO:");
+
+        jlbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbTitulo.setText("DEMO LOGIN");
+
+        javax.swing.GroupLayout jpanDemoLoginLayout = new javax.swing.GroupLayout(jpanDemoLogin);
+        jpanDemoLogin.setLayout(jpanDemoLoginLayout);
+        jpanDemoLoginLayout.setHorizontalGroup(
+            jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanDemoLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpanDemoLoginLayout.createSequentialGroup()
+                        .addComponent(jBtnLogin)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBtnLogup)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnRecuperar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpanDemoLoginLayout.createSequentialGroup()
+                        .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlbUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(jlbClave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JtxtUsuario)
+                            .addComponent(jTxtClave))))
+                .addContainerGap())
+        );
+        jpanDemoLoginLayout.setVerticalGroup(
+            jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanDemoLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbTitulo)
+                .addGap(219, 219, 219)
+                .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbUsuario)
+                    .addComponent(JtxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbClave)
+                    .addComponent(jTxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jpanDemoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnLogin)
+                    .addComponent(jBtnLogup)
+                    .addComponent(jBtnRecuperar))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JtxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(jTxtClave)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jBtnLogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnLogup)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnRecuperar)))
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpanDemoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(JtxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnLogin)
-                    .addComponent(jBtnLogup)
-                    .addComponent(jBtnRecuperar))
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpanDemoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -190,9 +208,10 @@ public class VistaLogin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnLogin;
     private javax.swing.JButton jBtnLogup;
     private javax.swing.JButton jBtnRecuperar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTxtClave;
+    private javax.swing.JLabel jlbClave;
+    private javax.swing.JLabel jlbTitulo;
+    private javax.swing.JLabel jlbUsuario;
+    private javax.swing.JPanel jpanDemoLogin;
     // End of variables declaration//GEN-END:variables
 }
