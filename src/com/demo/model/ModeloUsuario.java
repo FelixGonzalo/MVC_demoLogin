@@ -7,6 +7,9 @@ package com.demo.model;
 
 import com.demo.model.entity.Usuario;
 import java.io.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,99 +17,48 @@ import java.io.*;
  */
 public class ModeloUsuario extends Model {
 
-    public static File archivo = new File("src/archivoTxt/archivo.txt");
-
     public static long logUp(Usuario user) {//logUp
         long band = 0;
-        String linea;
         try {
-
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
-            String[] parts;
-            System.out.println("LlEGO HASTA ACA");
-            while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
-                if (Long.parseLong(parts[0]) == user.getId()) {
-                    return 1;
-                } else if (parts[1].equals(user.getEmail()) || user.getEmail().equals("")) {
-                    return 2;
-                } else if (user.getClave().equals("")) {
-                    return 3;
-                }
-            }
-
-            FileWriter escritorArchivo = new FileWriter(archivo, true);//si tiene true, escribe al final del texto
-            PrintWriter escribir = new PrintWriter(escritorArchivo);
-            String lineaTexto = user.getId() + ";" + user.getEmail() + ";" + user.getClave() + ";" + user.getApellidos() + ";" + user.getNombres() + ";" + user.getTipo();
-
-            escribir.println(lineaTexto);
-
-            escribir.close();
-            escritorArchivo.close();
-            almacenamiento.close();
-            lectorArchivo.close();
+            PreparedStatement ps = con.prepareStatement("insert into usuario values(?,?,?,?,?,?)");
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getClave());
+            ps.setString(4, user.getApellidos());
+            ps.setString(5, user.getNombres());
+            ps.setInt(1, user.getTipo());
+            ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al escribir: " + e);
+             return band =1;
         }
         return band;
-    }//añadimos texto al final del archivo
-
+    }
+        
     public static boolean logIn(Usuario user) {//log in
         boolean band = false;
         try {
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
-            String linea;
-            String[] parts;
-            while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
-                if (parts[1].compareTo(user.getEmail()) == 0 && parts[2].compareTo(user.getClave()) == 0) {
-                    band = true;
-                }
+            ResultSet rs = null;
+            PreparedStatement ps = con.prepareStatement("SELECT email, clave FROM email = "+user.getEmail());
+            rs = ps.executeQuery();
+            if (rs.getString(1).equals(user.getEmail()) && rs.getString(2).equals(user.getClave()) ) {
+                band=true;
             }
-            almacenamiento.close();
-            lectorArchivo.close();
         } catch (Exception e) {
-            System.out.println("Error al leer: " + e);
+            return band;
         }
         return band;
     }
 
     public static long recuperarClave(Usuario user) {//recuperar contraseña
-        long band = 2;
+        long band = 0;
         String texto = "";
-        int condicion = 0;//para ver si es necesario rescribir
-        try {
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
-
-            String linea;
-            String[] parts;
-            while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
-                if (parts[1].equals(user.getEmail())) {
-                    if (user.getClave().equals("")) {
-                        return 1;
-                    } else {
-                        linea = user.getId() + ";" + user.getEmail() + ";" + user.getClave() + ";" + user.getApellidos() + ";" + user.getNombres() + ";" + user.getTipo() + "\n";
-                        texto = texto + linea;
-                        condicion = 1;
-                    }
-                } else {
-                    texto = texto + linea + "\n";
-                }
-            }
-            if (condicion == 1) {
-                PrintWriter escribir = new PrintWriter(archivo);
-                escribir.println(texto);
-                band = 0;
-                escribir.close();
-            }
+       try {
+            PreparedStatement ps = con.prepareStatement("UPDATE usuario SET clave='"+user.getClave()+" WHERE email=" + user.getEmail());
+            ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al rescribir : " + e);
+             return band =1;
         }
         return band;
-
     }//se cambia el texto del archivo 
+        
 }

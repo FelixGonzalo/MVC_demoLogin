@@ -29,14 +29,13 @@ public class ControllerLogin extends Controller {
     public long logUp(String id, String email, String clave, String apellidos, String nombres, String tipo){
         long status = -1;
         if (!(email.endsWith("@hotmail.com") || email.endsWith("@gmail.com") || email.endsWith("@outlook.com"))) {
-            JOptionPane.showMessageDialog(null, "Correo no valida");
-            return status;
+            return status = 2;
         }
         try {
             Usuario user = new Usuario(Integer.parseInt(id), email, clave, apellidos, nombres, Integer.parseInt(tipo));
            status = ModeloUsuario.logUp(user);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Verifique los datos");
+            return status = 3;
         }
         return status;
     }

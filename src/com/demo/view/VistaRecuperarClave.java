@@ -131,7 +131,7 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Recuperación de clave Valida");
             break;
             case 1:
-                JOptionPane.showMessageDialog(this, "Verifique clave");
+                JOptionPane.showMessageDialog(this, "Actualizaciónn incorrecta");
             break;
             case 2:
                 JOptionPane.showMessageDialog(this, "Usuario no registrado");

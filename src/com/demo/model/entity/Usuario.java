@@ -11,7 +11,7 @@ package com.demo.model.entity;
  */
 public class Usuario {
     
-    private long id;
+    private int id;
     private String email;
     private String clave;
     private String apellidos;
@@ -21,7 +21,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(long id, String email, String clave, String apellidos, String nombres, int tipo) {
+    public Usuario(int id, String email, String clave, String apellidos, String nombres, int tipo) {
         this.id = id;
         this.email = email;
         this.clave = clave;
@@ -35,11 +35,11 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

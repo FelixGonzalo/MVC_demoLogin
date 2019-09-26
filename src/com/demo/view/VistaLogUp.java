@@ -186,13 +186,13 @@ public class VistaLogUp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Log Up Valida");
                 break;
             case 1:
-                JOptionPane.showMessageDialog(this, "Verifique su ID");
+                JOptionPane.showMessageDialog(this, "Error de Registro");
                 break;
             case 2:
                 JOptionPane.showMessageDialog(this, "Verifique su Email");
                 break;
             case 3:
-                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                JOptionPane.showMessageDialog(null, "Verifique los datos");
                 break;
         }
         limpiarJtxt();
