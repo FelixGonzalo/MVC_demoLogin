@@ -182,7 +182,7 @@ public class VistaLogUp extends javax.swing.JFrame {
         clave = jtxtClave.getText();
         apellidos = jtxtApellidos.getText();
         nombres = jtxtNombres.getText();
-        tipo = Integer.toString(jcbxTipo.getSelectedIndex()+1);
+        tipo = Integer.toString(jcbxTipo.getSelectedIndex());
         
         band = this.cLogin.logUp(id, email, clave, apellidos, nombres, tipo);
         
