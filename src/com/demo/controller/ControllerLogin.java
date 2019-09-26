@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.demo.controller;
-
 import com.demo.model.ModeloUsuario;
 import com.demo.model.entity.Usuario;
 import javax.swing.JOptionPane;
@@ -21,20 +20,21 @@ public class ControllerLogin extends Controller {
     
     public boolean logIn(String usuario, String clave){
         boolean band = false;
-        
         Usuario user = new Usuario(usuario, clave);
-        
         band = ModeloUsuario.logIn(user);
-        
         return band;
     }
     
     
     public long logUp(String id, String email, String clave, String apellidos, String nombres, String tipo){
         long status = -1;
+        if (!(email.endsWith("@hotmail.com") || email.endsWith("@gmail.com") || email.endsWith("@outlook.com"))) {
+            JOptionPane.showMessageDialog(null, "Correo no valida");
+            return status;
+        }
         try {
             Usuario user = new Usuario(Integer.parseInt(id), email, clave, apellidos, nombres, Integer.parseInt(tipo));
-            status = ModeloUsuario.logUp(user);
+           status = ModeloUsuario.logUp(user);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Verifique los datos");
         }
@@ -49,7 +49,6 @@ public class ControllerLogin extends Controller {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Verifique los datos");
         }
-        ModeloUsuario.listarUsuario();
         return status;
     }
     
