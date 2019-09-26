@@ -195,6 +195,7 @@ public class VistaLogUp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Contraseña invalida");
                 break;
         }
+        limpiarTxt();
     }//GEN-LAST:event_jbtnRegistrarActionPerformed
 
     /**
@@ -249,4 +250,14 @@ public class VistaLogUp extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtId;
     private javax.swing.JTextField jtxtNombres;
     // End of variables declaration//GEN-END:variables
+
+    public void limpiarTxt(){
+        jtxtId.setText("");
+        jtxtEmail.setText("");
+        jtxtClave.setText("");
+        jtxtApellidos.setText("");
+        jtxtNombres.setText("");
+    }
+
+
 }

@@ -137,6 +137,7 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario no registrado");
             break;    
         }
+        limpiarTxt();
     }//GEN-LAST:event_jbtnRecuperarActionPerformed
 
     /**
@@ -183,4 +184,9 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtNuevaClave;
     private javax.swing.JTextField jtxtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public void limpiarTxt(){
+        jtxtUsuario.setText("");
+        jtxtNuevaClave.setText("");
+    }
 }

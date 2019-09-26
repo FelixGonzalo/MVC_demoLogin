@@ -162,7 +162,7 @@ public class VistaLogin extends javax.swing.JFrame {
             //login incorrecto
             JOptionPane.showMessageDialog(this, "Login Invalido");
         }
-        
+        limpiarTxt();
     }//GEN-LAST:event_jBtnLoginActionPerformed
 
     private void jBtnLogupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLogupActionPerformed
@@ -219,4 +219,9 @@ public class VistaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jlbUsuario;
     private javax.swing.JPanel jpanDemoLogin;
     // End of variables declaration//GEN-END:variables
+
+    public void limpiarTxt(){
+        JtxtUsuario.setText("");
+        jTxtClave.setText("");
+    }
 }
