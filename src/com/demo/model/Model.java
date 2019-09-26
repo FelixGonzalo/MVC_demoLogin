@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  * @author whiston
  */
 public class Model {
-    private final String user = "root";
-    private final String password = "";
-    private final String url = "jdbc:mysql://localhost:3306/crudproducto";
+    private static String user = "root";
+    private static String password = "";
+    private static String url = "jdbc:mysql://localhost:3306/demologin";
     protected static Connection con = null;
 
-    public Connection getConexion() {
+    public static Connection getConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = (Connection) DriverManager.getConnection(url, user, password);

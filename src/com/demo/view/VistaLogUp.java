@@ -82,6 +82,11 @@ public class VistaLogUp extends javax.swing.JFrame {
         });
 
         jcbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "empleado", "invitado" }));
+        jcbxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbxTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpanLogUpLayout = new javax.swing.GroupLayout(jpanLogUp);
         jpanLogUp.setLayout(jpanLogUpLayout);
@@ -177,7 +182,7 @@ public class VistaLogUp extends javax.swing.JFrame {
         clave = jtxtClave.getText();
         apellidos = jtxtApellidos.getText();
         nombres = jtxtNombres.getText();
-        tipo = Integer.toString(jcbxTipo.getSelectedIndex());
+        tipo = Integer.toString(jcbxTipo.getSelectedIndex()+1);
         
         band = this.cLogin.logUp(id, email, clave, apellidos, nombres, tipo);
         
@@ -197,6 +202,10 @@ public class VistaLogUp extends javax.swing.JFrame {
         }
         limpiarJtxt();
     }//GEN-LAST:event_jbtnRegistrarActionPerformed
+
+    private void jcbxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbxTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbxTipoActionPerformed
 
     /**
      * @param args the command line arguments
