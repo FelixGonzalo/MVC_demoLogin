@@ -83,7 +83,10 @@ public class ModeloUsuario extends Model {
             almacenamiento.close();
         } catch (Exception e) {
             mensajeError(e);
-            band = 1;
+        }finally {
+            if (condicion == 0) {
+                band = 1;
+            }
         }
         return band;
 
