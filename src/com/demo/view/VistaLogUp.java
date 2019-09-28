@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.demo.view;
 
 import com.demo.controller.ControllerLogin;
@@ -50,6 +46,11 @@ public class VistaLogUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jpanLogUp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -183,20 +184,39 @@ public class VistaLogUp extends javax.swing.JFrame {
         
         switch((int)band){
             case 0:
-                JOptionPane.showMessageDialog(this, "Log Up Valida");
+                JOptionPane.showMessageDialog(this, "Log Up Valida !!");
+                limpiarJtxt();
                 break;
             case 1:
-                JOptionPane.showMessageDialog(this, "Verifique su ID");
+                JOptionPane.showMessageDialog(this, "Error al registrar !!");
                 break;
             case 2:
-                JOptionPane.showMessageDialog(this, "Verifique su Email");
+                JOptionPane.showMessageDialog(this, "Id ya existente !!");
                 break;
             case 3:
-                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                JOptionPane.showMessageDialog(this, "Email ya existente !!");
                 break;
+            case 4:
+                JOptionPane.showMessageDialog(this, "Especifique los datos !!");
+                break;    
+            case 5:
+                JOptionPane.showMessageDialog(this, "Verifique su Email, aceptamos: !!\n - @gmail.com \n- @hotmail.com \n- @outlook.es");
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(this, "Contraseña invalida !!");
+                break;
+            case 7:
+                JOptionPane.showMessageDialog(this, "Especifique su Nombre y apellido !!");
+                break;
+            case 8:
+                JOptionPane.showMessageDialog(this, "error con el ID, aceptamos solo números !!");
+            break;
         }
-        limpiarJtxt();
     }//GEN-LAST:event_jbtnRegistrarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+         limpiarJtxt();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

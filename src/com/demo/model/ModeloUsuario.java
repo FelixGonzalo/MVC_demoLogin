@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.demo.model;
 
 import com.demo.model.entity.Usuario;
@@ -10,101 +5,85 @@ import java.io.*;
 
 /**
  *
- * @author whiston
+ * @author Fekilo
  */
 public class ModeloUsuario extends Model {
 
     public static File archivo = new File("src/archivoTxt/archivo.txt");
 
-    public static long logUp(Usuario user) {//logUp
+    public static long logUp(Usuario user) {
         long band = 0;
-        String linea;
         try {
-
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
+            BufferedReader almacenamiento = new BufferedReader(new FileReader(archivo));
+            String linea;
             String[] parts;
-            System.out.println("LlEGO HASTA ACA");
             while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
-                if (Long.parseLong(parts[0]) == user.getId()) {
-                    return 1;
-                } else if (parts[1].equals(user.getEmail()) || user.getEmail().equals("")) {
-                    return 2;
-                } else if (user.getClave().equals("")) {
-                    return 3;
+                parts = linea.split(";");
+                if (Integer.parseInt(parts[0]) == user.getId()) {
+                    return band = 2;
+                } else if (parts[1].equals(user.getEmail())) {
+                    return band = 3;
                 }
             }
-
-            FileWriter escritorArchivo = new FileWriter(archivo, true);//si tiene true, escribe al final del texto
-            PrintWriter escribir = new PrintWriter(escritorArchivo);
+            PrintWriter escribir = new PrintWriter(new FileWriter(archivo, true));
             String lineaTexto = user.getId() + ";" + user.getEmail() + ";" + user.getClave() + ";" + user.getApellidos() + ";" + user.getNombres() + ";" + user.getTipo();
-
             escribir.println(lineaTexto);
-
             escribir.close();
-            escritorArchivo.close();
             almacenamiento.close();
-            lectorArchivo.close();
         } catch (Exception e) {
-            System.out.println("Error al escribir: " + e);
+            mensajeError(e);
+            band = 1;
         }
         return band;
     }//añadimos texto al final del archivo
 
-    public static boolean logIn(Usuario user) {//log in
+    public static boolean logIn(Usuario user) {
         boolean band = false;
         try {
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
+            BufferedReader almacenamiento = new BufferedReader(new FileReader(archivo));
             String linea;
             String[] parts;
             while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
+                parts = linea.split(";");
                 if (parts[1].compareTo(user.getEmail()) == 0 && parts[2].compareTo(user.getClave()) == 0) {
                     band = true;
                 }
             }
             almacenamiento.close();
-            lectorArchivo.close();
         } catch (Exception e) {
-            System.out.println("Error al leer: " + e);
+            mensajeError(e);
         }
         return band;
     }
 
-    public static long recuperarClave(Usuario user) {//recuperar contraseña
-        long band = 2;
-        String texto = "";
-        int condicion = 0;//para ver si es necesario rescribir
+    public static long recuperarClave(Usuario user) {
+        long band = 0;
+        int condicion = 0;//es necesario rescribir??
         try {
-            FileReader lectorArchivo = new FileReader(archivo);
-            BufferedReader almacenamiento = new BufferedReader(lectorArchivo);
-
+            BufferedReader almacenamiento = new BufferedReader(new FileReader(archivo));
+            String texto = "";
+            String lineaNueva = "";
             String linea;
             String[] parts;
             while ((linea = almacenamiento.readLine()) != null) {
-                parts = linea.split(";");//separo los datos por cada linea
+                parts = linea.split(";");
                 if (parts[1].equals(user.getEmail())) {
-                    if (user.getClave().equals("")) {
-                        return 1;
-                    } else {
-                        linea = user.getId() + ";" + user.getEmail() + ";" + user.getClave() + ";" + user.getApellidos() + ";" + user.getNombres() + ";" + user.getTipo() + "\n";
-                        texto = texto + linea;
-                        condicion = 1;
-                    }
+                    lineaNueva = parts[0] + ";" + parts[1] + ";" + user.getClave() + ";" + parts[3] + ";" + parts[4] + ";" + parts[5];
+                    condicion = 1;
                 } else {
                     texto = texto + linea + "\n";
                 }
             }
             if (condicion == 1) {
-                PrintWriter escribir = new PrintWriter(archivo);
+                PrintWriter escribir = new PrintWriter(new FileWriter(archivo));
+                texto = texto + lineaNueva;
                 escribir.println(texto);
-                band = 0;
                 escribir.close();
             }
+            almacenamiento.close();
         } catch (Exception e) {
-            System.out.println("Error al rescribir : " + e);
+            mensajeError(e);
+            band = 1;
         }
         return band;
 

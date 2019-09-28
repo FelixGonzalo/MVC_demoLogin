@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.demo.view;
 import com.demo.controller.ControllerLogin;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author whiston
+ * @author Fekilo
  */
 public class VistaLogin extends javax.swing.JFrame {
     ControllerLogin cLogin;
@@ -48,6 +44,11 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                formWindowDeactivated(evt);
+            }
+        });
 
         jpanDemoLogin.setBackground(new java.awt.Color(245, 248, 248));
         jpanDemoLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -156,13 +157,11 @@ public class VistaLogin extends javax.swing.JFrame {
         band = this.cLogin.logIn(usuario, clave);
         
         if(band){
-            //login Correcto
             JOptionPane.showMessageDialog(this, "Login Valida");
+            limpiarJtxt();
         }else{
-            //login incorrecto
             JOptionPane.showMessageDialog(this, "Login Invalido");
         }
-        limpiarJtxt();
         
     }//GEN-LAST:event_jBtnLoginActionPerformed
 
@@ -173,6 +172,10 @@ public class VistaLogin extends javax.swing.JFrame {
     private void jBtnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRecuperarActionPerformed
         vRecuperarClave.setVisible(true);
     }//GEN-LAST:event_jBtnRecuperarActionPerformed
+
+    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+        limpiarJtxt();
+    }//GEN-LAST:event_formWindowDeactivated
 
     /**
      * @param args the command line arguments
