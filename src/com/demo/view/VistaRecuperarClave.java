@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.demo.view;
 
 import com.demo.controller.ControllerLogin;
@@ -42,6 +38,11 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jpanRecuperarClave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -117,7 +118,6 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRecuperarActionPerformed
-                // TODO add your handling code here:
         String usuario, clave;
         usuario = this.jtxtUsuario.getText();
         clave = this.jtxtNuevaClave.getText();
@@ -126,19 +126,27 @@ public class VistaRecuperarClave extends javax.swing.JFrame {
         
         band = this.cLogin.RecuperarClave(usuario, clave);
         
-        switch((int)band){
+         switch ((int) band) {
             case 0:
-                JOptionPane.showMessageDialog(this, "Recuperación de clave Valida");
-            break;
+                JOptionPane.showMessageDialog(this, "Recuperación de clave Valida !!");
+                limpiarTxt();
+                break;
             case 1:
-                JOptionPane.showMessageDialog(this, "Verifique clave");
-            break;
+                JOptionPane.showMessageDialog(this, "Error para Recuperar Clave, revise Email !!");
+                break;
             case 2:
-                JOptionPane.showMessageDialog(this, "Usuario no registrado");
-            break;    
+                JOptionPane.showMessageDialog(this, "Especifique clave !!");
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(this, "Especifique email !!");
+                break;
         }
-        limpiarTxt();
+       
     }//GEN-LAST:event_jbtnRecuperarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        limpiarTxt();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
